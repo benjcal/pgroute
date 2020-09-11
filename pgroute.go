@@ -50,6 +50,10 @@ func getFunctionArgs(db *gorm.DB, name string) ([]string, error) {
 		return nil, err
 	}
 
+	if res.A == "" {
+		return []string{}, nil
+	}
+
 	// get arguments
 	argList := strings.Split(res.A, ",")
 
