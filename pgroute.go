@@ -93,9 +93,15 @@ func getParamList(argList []string, paramMap map[string]interface{}) (out []inte
 }
 
 func buildSqlStmt(funcName string, argList []string) string {
+	params := ""
 
-	for i, a := range argList {
-		argList[i] = fmt.Sprintf("%v => ?", a)
+	if len(argList) > 0 {
+		for i, a := range argList {
+			argList[i] = fmt.Sprintf("%v => ?", a)
+		}
+
+		params = strings.Join(argList, ", ")
 	}
-	return fmt.Sprintf("SELECT * FROM %v(%v)", funcName, strings.Join(argList, ", "))
+
+	return fmt.Sprintf("SELECT * FROM %v(%v)", funcName, params)
 }
