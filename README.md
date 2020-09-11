@@ -16,10 +16,9 @@ r.Mount("/f", pgroute.MountFunctionRoute(db))
 
 
 ```sql
-CREATE FUNCTION add_user(first_name TEXT, last_name TEXT, age INT) ...
+CREATE FUNCTION add_user(username TEXT, age INT) ...
 ```
 
-
 ```sh
-curl -X
+curl -X POST -d '{"username": "foo", "age": 22}'
 ```
